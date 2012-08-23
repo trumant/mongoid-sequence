@@ -1,6 +1,7 @@
 require "bundler/setup"
 require "test/unit"
 require "mongoid"
+require 'pry'
 
 require File.expand_path("../../lib/mongoid-sequence", __FILE__)
 
