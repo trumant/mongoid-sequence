@@ -1,4 +1,8 @@
 source :rubygems
 
-gem 'moped', :git => 'git://github.com/trumant/moped.git', :ref => 'f640871'
+group :test do
+  gem 'pry'
+  gem 'pry-nav'
+end
+
 gemspec

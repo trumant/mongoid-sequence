@@ -21,10 +21,11 @@ module Mongoid
     def set_sequence
       sequences = self.mongo_session["__sequences"]
       self.class.sequence_fields.each do |field|
-        next_sequence = sequences.find(:_id => "#{self.class.name.underscore}_#{field}").and_modify(
+        next_sequence = sequences.find(:_id => "#{self.class.name.underscore}_#{field}").modify(
           { "$inc" => {:seq => 1} }, :upsert => true
         )
-        self[field] = next_sequence["seq"]
+        sequence    = next_sequence['seq']
+        self[field] = sequence.present? ? sequence + 1 : 1
       end if self.class.sequence_fields
     end
   end
